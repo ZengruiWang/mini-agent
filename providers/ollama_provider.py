@@ -58,6 +58,8 @@ class OllamaProvider(BaseProvider):
             data["content"] = msg.content
         if msg.thinking is not None:
             data["thinking"] = msg.thinking
+        if msg.tool_name is not None:
+            data["tool_name"] = msg.tool_name
         if msg.tool_calls:
             data["tool_calls"] = [
                 {
