@@ -53,7 +53,13 @@ class Agent:
 
             for tool_call in reply.tool_calls:
                 result = self._execute_tool(tool_call)
-                self.messages.append(Message(role=Role.TOOL, content=str(result)))
+                self.messages.append(
+                    Message(
+                        role=Role.TOOL,
+                        content=str(result),
+                        tool_name=tool_call.function.name,
+                    )
+                )
 
         logger.info("Messages:\n%s", self.messages)
         raise RuntimeError(f"Agent exceeded {self.max_turns} turns")
