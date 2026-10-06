@@ -58,6 +58,7 @@ class Agent:
                         role=Role.TOOL,
                         content=str(result),
                         tool_name=tool_call.function.name,
+                        tool_call_id=tool_call.id,
                     )
                 )
 
