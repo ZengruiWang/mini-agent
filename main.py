@@ -1,10 +1,14 @@
 import logging
 
+from dotenv import load_dotenv
+
 from agent import Agent
-from providers.ollama_provider import OllamaProvider
+from providers.openai_provider import OpenAIProvider
 from tools.calculator import Calculator
 from tools.web_fetch import WebFetch
 from tools.web_search import WebSearch
+
+load_dotenv()
 
 logging.basicConfig(
     level=logging.INFO,
@@ -12,11 +16,11 @@ logging.basicConfig(
 )
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
-MODEL = "qwen3:8b"
+MODEL = "gpt-4o"
 
 if __name__ == "__main__":
     agent = Agent(
-        provider=OllamaProvider(),
+        provider=OpenAIProvider(),
         model=MODEL,
         tools=[Calculator(), WebSearch(), WebFetch()],
         system_prompt=(

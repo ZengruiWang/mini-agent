@@ -25,6 +25,7 @@ class Message:
     thinking: str | None = None
     tool_calls: list[ToolCall] | None = None
     tool_name: str | None = None
+    tool_call_id: str | None = None
 
 @dataclass
 class StreamChunk:
