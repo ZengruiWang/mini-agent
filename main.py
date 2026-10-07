@@ -35,4 +35,4 @@ if __name__ == "__main__":
         stream=False,
     )
 
-    reply = agent.run("what is the weather will be like in the next week for Los Angeles?")
+    reply = agent.run("what is the return policy for Costco?")
