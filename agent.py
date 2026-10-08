@@ -48,7 +48,7 @@ class Agent:
             self.messages.append(reply)
 
             if not reply.tool_calls:
-                logger.info("Messages:\n%s", self.messages)
+                logger.info("Messages:\n%s", Message.format_history(self.messages))
                 return reply
 
             for tool_call in reply.tool_calls:
@@ -62,7 +62,7 @@ class Agent:
                     )
                 )
 
-        logger.info("Messages:\n%s", self.messages)
+        logger.info("Messages:\n%s", Message.format_history(self.messages))
         raise RuntimeError(f"Agent exceeded {self.max_turns} turns")
 
     def _call_model(self, *, stream: bool, **kwargs) -> Message:
