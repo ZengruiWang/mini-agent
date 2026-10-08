@@ -6,3 +6,5 @@ trafilatura>=2.0
 ollama
 openai
 python-dotenv
+pyyaml
+pytest

@@ -1,0 +1,55 @@
+- id: simple_addition
+  input: "what is 1 + 1"
+  expect:
+    must_call_tools: [calculator]
+    answer_contains: "2"
+    max_turns: 2
+
+- id: multiplication
+  input: "what is 12345 x 1222"
+  expect:
+    must_call_tools: [calculator]
+    answer_contains: "15085590"
+    max_turns: 2
+
+- id: expression
+  input: "what is 1 + 1 and then times 2"
+  expect:
+    must_call_tools: [ calculator ]
+    answer_contains: "4"
+    max_turns: 2
+
+- id: division
+  input: "what is 100 / 4"
+  expect:
+    must_call_tools: [calculator]
+    answer_contains: "25"
+    max_turns: 2
+
+- id: division_invalid
+  input: "what is 100 / 0"
+  expect:
+    must_not_call_tools: [calculator]
+    answer_contains_any:
+      - invalid
+      - undefined
+      - "division by zero"
+      - "cannot divide"
+      - "not defined"
+      - "not possible"
+    max_turns: 1
+
+- id: sphere_volume
+  input: "what is the volume of a sphere with radius 101?"
+  expect:
+    must_call_tools: [calculator]
+    answer_close_to: 4301673   # (4/3) * pi * 101**3
+    tolerance: 0.01            # 1% — allows different pi precision / rounding
+
+- id: metrics_conversion
+  input: "My weight is 153.3lb what's in kilos?"
+  expect:
+    must_call_tools: [calculator]
+    answer_close_to: 69.536    # 153.3 * 0.453592
+    tolerance: 0.01
+    max_turns: 2
